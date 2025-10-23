@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-8">
+      <div class="card p-4">
+        <div class="text-center mb-4">
+          <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center"
+            style="width:60px;height:60px;font-size:28px;">
+            <i class="bi bi-person-fill"></i>
+          </div>
+          <h1 class="h4 mt-3">Inicia sesión</h1>
+          <p class="text-muted mb-0">Accede con tu correo electrónico y contraseña.</p>
+        </div>
+
+        <form id="loginForm" (ngSubmit)="enviar()" novalidate>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="email" placeholder="tucorreo@ejemplo.com" [(ngModel)]="email"
+              name="email" required>
+            <div class="invalid-feedback">Introduce un correo válido.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="password" placeholder="••••••••" [(ngModel)]="password"
+                name="password" minlength="6" required>
+              <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres.</div>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Entrar</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

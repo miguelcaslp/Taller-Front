@@ -1,0 +1,39 @@
+<app-navbar-admin></app-navbar-admin>
+<div class="container my-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Lista de Empleados</h3>
+    <button class="btn btn-success" (click)="addEmpleado()">
+      <i class="fas fa-plus"></i> Añadir Empleado
+    </button>
+  </div>
+
+  <div class="row">
+    <div *ngFor="let empleado of empleados; let i = index" class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body d-flex justify-content-between align-items-start">
+          <div>
+            <i class="fas fa-user fa-lg text-primary me-2"></i>
+            <strong>{{ empleado.Name }}</strong><br>
+            <small class="text-muted d-block">
+              <i class="fas fa-envelope me-1"></i> {{ empleado.Email }}
+            </small>
+            <small class="text-muted d-block">
+              <i class="fas fa-id-card me-1"></i> {{ empleado.DNI }}
+            </small>
+            <small class="text-muted d-block">
+              <i class="fas fa-briefcase me-1"></i> {{ empleado.Role }}
+            </small>
+          </div>
+          <div class="btn-group ms-2">
+            <button (click)="editarEmpleado(empleado)" class="btn btn-sm btn-primary me-2" title="Editar">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button (click)="confirmarEliminar(empleado.Id)" class="btn btn-sm btn-danger" title="Eliminar">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
