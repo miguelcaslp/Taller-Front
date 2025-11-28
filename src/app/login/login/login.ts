@@ -22,14 +22,19 @@ export class Login {
     }
     this.apiService.login(data).subscribe({
       next: (response) => {
-        console.log('✅ Login exitoso:', response);
 
         // puedes guardar token, redirigir, etc.
         localStorage.setItem('token', response.token);
         localStorage.setItem('role', response.user.role);
-        localStorage.setItem('name',  response.user.name)
-        if(response.user.role=="admin"){
+        localStorage.setItem('name',  response.user.name);
+        localStorage.setItem('Id_Taller',  response.user.Id_Taller);
+
+        if(response.user.role=="Admin"){
           this.router.navigate(['/taller-admin']);
+        }else if(response.user.role=="Recepcionista"){
+          this.router.navigate(['/reparaciones']);
+        }else if(response.user.role=="Mecanico"){
+          this.router.navigate(['/tareas-mecanico']);
         }
       },
       error: (err) => {

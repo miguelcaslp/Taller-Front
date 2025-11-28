@@ -1,0 +1,80 @@
+<app-navbar-recepcion></app-navbar-recepcion>
+
+<div class="container-fluid p-3">
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3">
+    <h2 class="mb-3 mb-md-0 text-center text-md-start">📋 Lista de ordenes de reparación</h2>
+    <button class="btn btn-success responsive-btn" (click)="addReparacion()">
+      <i class="fas fa-plus"></i> Añadir Orden
+    </button>
+  </div>
+
+  <input
+    type="text"
+    placeholder="Filtrar por un campo"
+    class="form-control mb-3"
+    (input)="updateFilter($event)"
+  />
+
+  <!-- 💻 Tabla visible solo en escritorio -->
+  <div class="d-none d-md-block">
+    <ngx-datatable
+      class="bootstrap striped"
+      [rows]="filteredRows"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="'auto'"
+      [limit]="10"
+      [loadingIndicator]="loading">
+      <ngx-datatable-column name="Reparacion" prop="Repair_Request"></ngx-datatable-column>
+      
+      <ngx-datatable-column name="Cliente" prop="DNI"></ngx-datatable-column>
+      <ngx-datatable-column name="Vehiculo" prop="Car_Plate"></ngx-datatable-column>
+
+      <ngx-datatable-column name="Estado" prop="State"></ngx-datatable-column>
+      <ngx-datatable-column name="Fecha" prop="Date"></ngx-datatable-column>
+
+      <ngx-datatable-column name="Acciones" [sortable]="false" [canAutoResize]="false" [width]="150">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div class="d-flex justify-content-start gap-2">
+            <button (click)="editReparacion(row)" class="btn btn-outline-primary btn-sm" >
+              <i class="fas fa-edit"></i>
+            </button>
+            <button (click)="delete(row.Id)" class="btn btn-outline-danger btn-sm" >
+              <i class="fas fa-trash"></i>
+            </button>
+            <button (click)="factura(row.Id)" class="btn btn-outline-warning btn-sm">
+              <i class="fas fa-file-alt"></i>
+            </button>
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+    </ngx-datatable>
+  </div>
+
+  <!-- 📱 Vista móvil: tarjetas -->
+  <div class="d-md-none">
+    <div *ngFor="let item of filteredRows" class="card mb-3 shadow-sm border-0 rounded-3">
+      <div class="card-body p-3">
+        <h5 class="card-title mb-2 fw-bold text-primary">{{ item.Repair_Request }}</h5>
+        <p class="mb-1"><strong>Vehiculo:</strong> {{ item.Car_Plate }}</p>
+        <p class="mb-1"><strong>Cliente:</strong> {{ item.DNI }}</p>
+        <p class="mb-1"><strong>Estado:</strong> {{ item.State }}</p>
+        <p class="mb-1"><strong>Fecha:</strong> {{ item.Date }}</p>
+
+        <div class="d-flex justify-content-end gap-2 mt-2">
+          <button (click)="editReparacion(item)" class="btn btn-outline-primary btn-sm" >
+            <i class="fas fa-edit"></i>
+          </button>
+          <button (click)="delete(item.Id)" class="btn btn-outline-danger btn-sm" >
+            <i class="fas fa-trash"></i>
+          </button>
+           <button (click)="factura(item.Id)" class="btn btn-outline-warning btn-sm">
+              <i class="fas fa-file-alt"></i>
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

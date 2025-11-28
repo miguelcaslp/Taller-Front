@@ -1,0 +1,83 @@
+<app-navbar-recepcion></app-navbar-recepcion>
+<div class="max-w-4xl mx-auto size-box bg-white shadow-lg rounded-lg border border-gray-200">
+
+    <!-- Encabezado -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">Factura de Reparación</h1>
+        <div class="text-right mt-4 md:mt-0">
+            <p class="text-gray-600"><span class="font-semibold">Fecha:</span> {{ reparacion.Date | date:'shortDate' }}
+            </p>
+            <p class="text-gray-600"><span class="font-semibold">Solicitud:</span> {{ reparacion.Repair_Request }}</p>
+        </div>
+    </div>
+
+    <!-- Información del cliente y vehículo -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+            <h2 class="text-lg font-semibold text-gray-700 mb-2">Cliente</h2>
+            <p><span class="font-semibold">Nombre:</span> {{ cliente.Name }}</p>
+            <p><span class="font-semibold">DNI:</span> {{ cliente.DNI }}</p>
+        </div>
+        <div>
+            <h2 class="text-lg font-semibold text-gray-700 mb-2">Vehículo</h2>
+            <p><span class="font-semibold">Placa:</span> {{ vehiculo }}</p>
+        </div>
+    </div>
+
+    <!-- Botón Agregar Pieza -->
+    <div class="flex justify-end mb-4">
+        <button class="btn btn-success responsive-btn" (click)="addPieza()">
+            <i class="fas fa-plus"></i> Añadir Pieza
+        </button>
+    </div>
+
+    <!-- Tabla de piezas -->
+    <div class="overflow-x-auto flex justify-center">
+        <table class="min-w-full border border-gray-200 rounded-lg">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="text-left py-2 px-4 border-b border-gray-200">Pieza</th>
+                    <th class="text-right py-2 px-4 border-b border-gray-200">Precio</th>
+                    <th class="text-center py-2 px-4 border-b border-gray-200">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pieza of piezas">
+                    <td class="py-2 px-4 border-b border-gray-200">{{ pieza.Name }}</td>
+                    <td class="py-2 px-4 border-b border-gray-200 text-right">{{ pieza.Price | currency:'USD':'symbol'
+                        }}</td>
+                    <td class="py-2 px-4 border-b border-gray-200 text-center">
+                        <button (click)="editPieza(pieza)" class="btn btn-outline-primary btn-sm mr-2">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button (click)="deletePieza(pieza.Id)" class="btn btn-outline-danger btn-sm">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot class="bg-gray-100">
+                <tr>
+                    <td class="py-2 px-4 font-semibold text-right" colspan="1">Horas Trabajadas</td>
+                    <td class="py-2 px-4 font-semibold text-right">
+                        {{ totalHours }} x 22€
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="py-2 px-4 font-semibold text-right" colspan="1">Total</td>
+                    <td class="py-2 px-4 font-semibold text-right">
+                        {{ totalPiezas | currency:'€':'symbol' }}
+                    </td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+
+
+        <hr>
+
+        <button class="btn btn-warning responsive-btn" (click)="generatePDF()">
+            <i class="fas fa-file-alt"></i> Generar PDF
+        </button>
+    </div>

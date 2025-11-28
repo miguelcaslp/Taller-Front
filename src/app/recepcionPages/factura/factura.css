@@ -1,0 +1,14 @@
+.size-box{
+  padding: 20px;
+}
+
+.responsive-btn {
+   width: auto;
+}
+@media (max-width: 760px) {
+
+.responsive-btn {
+  width: 100%;
+}
+
+}

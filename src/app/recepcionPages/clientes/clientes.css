@@ -1,0 +1,41 @@
+/* Para mejorar la visualización en móviles */
+
+.responsive-btn {
+   width: auto;
+}
+
+@media (max-width: 760px) {
+
+.responsive-btn {
+  width: 100%;
+}
+
+  .responsive-datatable {
+    font-size: 14px;
+  }
+
+  .responsive-datatable .datatable-header-cell {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .responsive-datatable .datatable-body-cell {
+    white-space: nowrap;
+  }
+
+  .responsive-datatable .datatable-body-row {
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  /* Reduce padding de botones */
+  .btn-sm {
+    padding: 4px 6px;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  
+}

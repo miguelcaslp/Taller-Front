@@ -1,0 +1,23 @@
+.no-autorizado-container {
+  text-align: center;
+  margin-top: 10%;
+  font-family: Arial, sans-serif;
+}
+
+.no-autorizado-container h1 {
+  color: #d32f2f;
+}
+
+button {
+  margin-top: 20px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1565c0;
+}

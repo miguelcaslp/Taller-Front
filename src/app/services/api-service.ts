@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
- private baseUrl = 'http://localhost:3000'; 
+ private baseUrl = 'https://taller-back-miguelcaslps-projects.vercel.app'; 
 
   constructor(private http: HttpClient) {}
 
@@ -42,7 +42,7 @@ export class ApiService {
       Authorization: `Bearer ${token}`
     });
 
-    return this.http.get(`${this.baseUrl}/${endpoint}`, { headers });
+    return this.http.get(`${this.baseUrl}/${endpoint}`,{ headers });
   }
 
   delete(endpoint: string): Observable<any> {
